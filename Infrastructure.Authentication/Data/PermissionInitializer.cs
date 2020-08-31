@@ -8,7 +8,7 @@ using Infrastructure.Shared.Helpers;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WebApplication.Extensions
+namespace Infrastructure.Authentication.Data
 {
     public static class PermissionInitializer
     {

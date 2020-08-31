@@ -49,8 +49,8 @@ namespace WebApplication
             app.UseStaticFiles();
             //logs username in serilog
             app.UseMiddleware<LogUserNameMiddleware>();
-            //initialize permissions from class
-            //PermissionInitializer.InitializePermission(serviceProvider).Wait();
+
+            //app.UsePermissionInitializerExtension(serviceProvider);
             app.UseRouting();
 
             app.UseAuthentication();
