@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Text;
-using Domain.Settings;
 using Infrastructure.Authentication.Contexts;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Infrastructure.Authentication.Models.Identity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.IdentityModel.Tokens;
 
 namespace Infrastructure.Authentication
 {
@@ -16,8 +14,31 @@ namespace Infrastructure.Authentication
         {
             services.AddDbContext<AuthenticationDbContext>(options =>
                 options.UseSqlServer(
-                    configuration.GetConnectionString("DefaultConnection"),
-                    b => b.MigrationsAssembly(typeof(AuthenticationDbContext).Assembly.FullName)));
+                    configuration.GetConnectionString("DefaultConnection")));
+            services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+                {
+                    options.Password.RequiredLength = 1;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                })
+                .AddRoles<IdentityRole>()
+                .AddEntityFrameworkStores<AuthenticationDbContext>()
+                .AddDefaultTokenProviders();
+
+            //additional claims besides the default lists
+            services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, AdditionalClaims>();
+            //Email Config Get Values From AppSetting And Bind Data In Class
+            services.ConfigureApplicationCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromMinutes(Convert.ToDouble(configuration["ApplicationData:ApplicationTimeOut"]));
+                options.Cookie.HttpOnly = true;
+                options.LoginPath = "/Login";
+                options.LogoutPath = "/Login/Logout";
+                options.AccessDeniedPath = "/Login/AccessDenied";
+                options.SlidingExpiration = true;
+            });
         }
     }
 }
