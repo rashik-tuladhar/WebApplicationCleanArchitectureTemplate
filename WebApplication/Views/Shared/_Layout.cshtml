@@ -1,48 +1,75 @@
 ﻿<!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - WebApplication</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" />
+    <title>Clean Architecture Application Solutions</title>
+    <!-- HTML5 Shim and Respond.js IE11 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 11]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="">
+    <meta name="author" content="" />
+    <!-- Favicon icon -->
+    <link rel="icon" href="~/assets/images/favicon.ico" type="image/x-icon">
+    <!-- vendor css -->
+    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="~/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <style>
+        .fixed-button {
+            display: none !important;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">WebApplication</a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex flex-sm-row-reverse">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-    </header>
-    <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
-    </div>
-
-    <footer class="border-top footer text-muted">
-        <div class="container">
-            &copy; 2020 - WebApplication - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+    <!-- [ Pre-loader ] start -->
+    <div class="loader-bg">
+        <div class="loader-track">
+            <div class="loader-fill"></div>
         </div>
-    </footer>
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
-    @RenderSection("Scripts", required: false)
+    </div>
+    <!-- [ Pre-loader ] End -->
+
+@await Component.InvokeAsync("DashboardNavigation")
+
+<partial name="_HeaderPartial" />
+
+<div class="pcoded-main-container">
+    <div class="pcoded-content">
+        @RenderSection("Breadcrumb", false)
+        <div class="row">
+            @RenderBody()
+        </div>
+    </div>
+</div>
+<script src="~/plugins/jquery/jquery.min.js"></script>
+<script src="~/assets/js/vendor-all.min.js"></script>
+    <script src="~/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="~/assets/js/ripple.js"></script>
+    <script src="~/assets/js/pcoded.min.js"></script>
+    <!-- Apex Chart -->
+    <script src="~/assets/js/plugins/apexcharts.min.js"></script>
+    <!-- custom-chart js -->
+<script src="~/assets/js/pages/dashboard-main.js"></script>
+<script src="~/plugins/toastr/toastr.min.js"></script>
+<script src="~/plugins/jquery-validation/jquery.validate.min.js"></script>
+<partial name="_AlertPartial" />
+@*<script>
+
+    var url = window.location;
+    var allLinks = document.querySelectorAll('.nav-item a');
+    var currentLink = [...allLinks].filter(e => {
+        return e.href == url;
+    });
+
+    currentLink[0].classList.add("active");
+    currentLink[0].closest(".pcoded-submenu").style.display = "block";
+    currentLink[0].closest(".pcoded-submenu").classList.add("active");
+</script>*@
 </body>
 </html>

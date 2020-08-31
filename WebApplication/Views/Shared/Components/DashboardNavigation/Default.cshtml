@@ -1,0 +1,88 @@
+﻿@using Infrastructure.Authentication.Models.Identity;
+@using Microsoft.AspNetCore.Identity
+@model List<Application.DTOs.Navigation.NavigationViewModel>
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+
+    <nav class="pcoded-navbar menu-light ">
+        <div class="navbar-wrapper  ">
+            <div class="navbar-content scroll-div ">
+                <div class="">
+                    <div class="main-menu-header">
+                        <img class="img-radius" src="~/assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
+                        <div class="user-details">
+                            <div id="more-details">@User.FindFirst("FullName").Value <i class="fa fa-caret-down"></i></div>
+                        </div>
+                    </div>
+                    <div class="collapse" id="nav-user-link">
+                        <ul class="list-unstyled">
+                            <li class="list-group-item"><a href="#!"><i class="feather icon-settings m-r-5"></i>Change Password</a></li>
+                            <li class="list-group-item"><a asp-area="CoreSetup" asp-controller="Login" asp-action="Logout"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <ul class="nav pcoded-inner-navbar ">
+                    <li class="nav-item pcoded-menu-caption">
+                        <label>Navigation</label>
+                    </li>
+
+                    @foreach (var menu in Model)
+                    {
+                        @if (menu.Group == "Dashboard")
+                        {
+                            <li class="nav-item">
+                                <a href="/@menu.Group" class="nav-link">
+                                    <span class="pcoded-micon">
+                                    <i class="fas fa-th @*@menu.GroupIcon*@"></i>
+                                    </span>
+                                    <span class="pcoded-mtext">
+                                        @menu.Group
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item pcoded-hasmenu">
+                                <a href="#!" class="nav-link">
+                                    <span class="pcoded-micon">
+                                    <i class="fas fa-tachometer-alt @*@menu.GroupIcon*@"></i>
+                                    </span>
+                                        <span class="pcoded-mtext">
+                                            @menu.Group
+                                        </span>
+                                </a>
+                                <ul class="pcoded-submenu">
+                                    @{ var subMenus = menu.MenuItems.GroupBy(x => x.SubGroup).ToList(); }
+                                    @foreach (var menuItem in subMenus)
+                                    {
+                                        if (menuItem.Key != "")
+                                        {
+                                            <li>
+                                                <a href="@menuItem.Key">
+                                                    @menuItem.Key
+                                                </a>
+                                            </li>
+                                        }
+                                        else
+                                        {
+                                            @foreach (var subMenuList in menuItem)
+                                            {
+                                                <li>
+                                                    <a href="/@subMenuList.Links">
+                                                        @subMenuList.MenuName
+                                                    </a>
+                                                </li>
+                                            }
+                                        }
+                                    }
+                                </ul>
+                            </li>
+                        }
+                    }
+                </ul>
+            </div>
+        </div>
+    </nav>
