@@ -10,14 +10,14 @@
             <div class="navbar-content scroll-div ">
                 <div class="">
                     <div class="main-menu-header">
-                        <img class="img-radius" src="~/assets/images/user/avatar-2.jpg" alt="User-Profile-Image">
-                        <div class="user-details">
+                        <img class="img-radius" src="~/assets/images/user/avatar.jpg" alt="User-Profile-Image">
+                        <div class="user-details m-t-10">
                             <div id="more-details">@User.FindFirst("FullName").Value <i class="fa fa-caret-down"></i></div>
                         </div>
                     </div>
                     <div class="collapse" id="nav-user-link">
                         <ul class="list-unstyled">
-                            <li class="list-group-item"><a href="#!"><i class="feather icon-settings m-r-5"></i>Change Password</a></li>
+                            <li class="list-group-item"><a asp-area="CoreSetup" asp-controller="CoreSetupUtility" asp-action="ChangePassword"><i class="feather icon-settings m-r-5"></i>Change Password</a></li>
                             <li class="list-group-item"><a asp-area="CoreSetup" asp-controller="Login" asp-action="Logout"><i class="feather icon-log-out m-r-5"></i>Logout</a></li>
                         </ul>
                     </div>

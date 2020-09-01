@@ -15,16 +15,12 @@
     <meta name="description" content="" />
     <meta name="keywords" content="">
     <meta name="author" content="" />
-    <!-- Favicon icon -->
     <link rel="icon" href="~/assets/images/favicon.ico" type="image/x-icon">
-    <!-- vendor css -->
-    <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="~/assets/css/style.css" rel="stylesheet">
     <link href="~/plugins/toastr/toastr.min.css" rel="stylesheet" />
-    <style>
-        .fixed-button {
-            display: none !important;
-        }
-    </style>
+    <link href="~/plugins/mdi-icons/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/css/admin-theme-global-styles.css" rel="stylesheet" />
+    <link href="~/css/admin-theme-custom-styles.css" rel="stylesheet" />
 </head>
 <body>
     <!-- [ Pre-loader ] start -->
@@ -35,41 +31,32 @@
     </div>
     <!-- [ Pre-loader ] End -->
 
-@await Component.InvokeAsync("DashboardNavigation")
+    @await Component.InvokeAsync("DashboardNavigation")
 
-<partial name="_HeaderPartial" />
+    <partial name="_HeaderPartial" />
 
-<div class="pcoded-main-container">
-    <div class="pcoded-content">
-        @RenderSection("Breadcrumb", false)
-        <div class="row">
-            @RenderBody()
+    <div class="pcoded-main-container">
+        <div class="pcoded-content">
+            @await RenderSectionAsync("Breadcrumb", false)
+            <div class="row">
+                @RenderBody()
+            </div>
         </div>
     </div>
-</div>
-<script src="~/plugins/jquery/jquery.min.js"></script>
-<script src="~/assets/js/vendor-all.min.js"></script>
+    <script src="~/plugins/jquery/jquery.min.js"></script>
+    <script src="~/assets/js/vendor-all.min.js"></script>
     <script src="~/assets/js/plugins/bootstrap.min.js"></script>
     <script src="~/assets/js/ripple.js"></script>
     <script src="~/assets/js/pcoded.min.js"></script>
     <!-- Apex Chart -->
     <script src="~/assets/js/plugins/apexcharts.min.js"></script>
     <!-- custom-chart js -->
-<script src="~/assets/js/pages/dashboard-main.js"></script>
-<script src="~/plugins/toastr/toastr.min.js"></script>
+    <script src="~/assets/js/pages/dashboard-main.js"></script>
+    <script src="~/plugins/toastr/toastr.min.js"></script>
 <script src="~/plugins/jquery-validation/jquery.validate.min.js"></script>
+<!-- custom scripts -->
+    <script src="~/js/site.js"></script>
 <partial name="_AlertPartial" />
-@*<script>
-
-    var url = window.location;
-    var allLinks = document.querySelectorAll('.nav-item a');
-    var currentLink = [...allLinks].filter(e => {
-        return e.href == url;
-    });
-
-    currentLink[0].classList.add("active");
-    currentLink[0].closest(".pcoded-submenu").style.display = "block";
-    currentLink[0].closest(".pcoded-submenu").classList.add("active");
-</script>*@
+    @await RenderSectionAsync("scripts", false)
 </body>
 </html>

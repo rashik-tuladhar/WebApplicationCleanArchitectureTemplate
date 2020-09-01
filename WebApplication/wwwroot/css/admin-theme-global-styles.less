@@ -1,0 +1,93 @@
+@primary-color: #343a40;
+@secondary-color: #007bff;
+@tertiary-color: #ff0000;
+
+
+//Error And Highlights
+input[type=text].error,
+input[type=text].error:focus,
+input[type=password].error,
+input[type=password].error:focus,
+input[type=email].error,
+input[type=email].error:focus,
+input[type=number].error,
+input[type=number].error:focus,
+select.error,
+select.error:focus,
+textarea.error,
+textarea.error:focus {
+    border-color: @tertiary-color;
+    border-bottom: 1px solid @tertiary-color;
+}
+
+.error {
+    font-size: 11px;
+    color: @tertiary-color;
+}
+
+
+
+//Strength Password
+.strength-title {
+    font-size: 12px;
+}
+
+.strength-label {
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.strength-indicator {
+    background-color: #cccccc;
+    border-radius: 2px;
+    display: block;
+    height: 6px;
+    margin-top: 5px;
+    overflow: hidden;
+    width: 100%;
+
+    &:after {
+        content: "";
+        display: block;
+        height: 100%;
+    }
+}
+
+.strength-danger {
+    .strength-label {
+        color: #ff2801;
+    }
+
+    .strength-indicator {
+        &:after {
+            background-color: #ff2801;
+            width: 25%;
+        }
+    }
+}
+
+.strength-warning {
+    .strength-label {
+        color: #eda515;
+    }
+
+    .strength-indicator {
+        &:after {
+            background-color: #eda515;
+            width: 50%;
+        }
+    }
+}
+
+.strength-success {
+    .strength-label {
+        color: #63dc3f;
+    }
+
+    .strength-indicator {
+        &:after {
+            background-color: #63dc3f;
+            width: 100%;
+        }
+    }
+}
