@@ -1,7 +1,9 @@
 using System;
 using Application;
 using Infrastructure.Authentication;
+using Infrastructure.CoreSetup;
 using Infrastructure.Persistence;
+using Infrastructure.Shared;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -28,6 +30,8 @@ namespace WebApplication
             #region Infrastructure
             services.AddAuthenticationInfrastructure(Configuration);
             services.AddPersistenceInfrastructure(Configuration);
+            services.AddCoreSetupInfrastructure();
+            services.AddSharedInfrastructure();
             #endregion
             services.AddControllersWithViews();
             services.AddRazorPages().AddRazorRuntimeCompilation();

@@ -10,12 +10,12 @@ select.error,
 select.error:focus,
 textarea.error,
 textarea.error:focus {
-  border-color: #ff0000;
-  border-bottom: 1px solid #ff0000;
+  border-color: #000;
+  border-bottom: 1px solid #000;
 }
 .error {
   font-size: 11px;
-  color: #ff0000;
+  color: red;
 }
 .strength-title {
   font-size: 12px;
@@ -58,4 +58,185 @@ textarea.error:focus {
 .strength-success .strength-indicator:after {
   background-color: #63dc3f;
   width: 100%;
+}
+table.dataTable {
+  border-bottom: 0px;
+  border-collapse: collapse;
+  display: inline-table;
+  margin: 15px auto !important;
+  width: 100% !important;
+}
+table.dataTable thead tr > th {
+  background-color: #4680ff;
+  border-bottom: 1px solid #4680ff;
+  color: #FFF;
+  font-weight: 500;
+  font-size: 15px;
+  padding: 10px 10px;
+  vertical-align: middle;
+}
+table.dataTable thead tr > th > label {
+  margin: 0px;
+}
+table.dataTable thead tr > th > label input[type='checkbox'] {
+  margin: 0px;
+}
+table.dataTable tbody tr.selected {
+  background-color: #FFFBED !important;
+}
+table.dataTable tbody tr.unread {
+  background-color: #f4f4f4;
+}
+table.dataTable tbody tr.unread > td {
+  color: #2C343F;
+  font-weight: 600;
+}
+table.dataTable tbody tr.unread > td > a {
+  font-weight: 400;
+}
+table.dataTable tbody tr > td {
+  border-bottom: 1px solid #ccd0d4;
+  padding: 5px 10px;
+  vertical-align: middle;
+  font-size: 14px;
+}
+table.dataTable tbody tr > td > label {
+  margin: 0px;
+}
+table.dataTable tbody tr > td > label input[type='checkbox'] {
+  margin: 0px;
+}
+table.dataTable.no-footer {
+  border-bottom: none !important;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > td:first-child before {
+  -webkit-box-shadow: 0px 0px 0px 1px #ddd;
+  box-shadow: 0px 0px 0px 1px #ddd;
+  top: 12px;
+}
+table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child before {
+  -webkit-box-shadow: 0px 0px 0px 1px #ddd;
+  box-shadow: 0px 0px 0px 1px #ddd;
+  top: 12px;
+}
+.dataTables_wrapper .dataTables_filter input[type="search"] {
+  background: #f4f4f4;
+  border-radius: 4px;
+  border: 1px solid #ccd0d4;
+  color: #000;
+  font-size: 14px;
+  height: 34px;
+  line-height: 1.42857143;
+  padding: 6px 12px;
+}
+.dataTables_wrapper .dataTables_filter input[type="search"]:focus {
+  border-color: #4680ff;
+  outline: none;
+}
+.dataTables_wrapper .dataTables_length select {
+  background-color: #FFF;
+  background-image: none;
+  border-radius: 4px;
+  border: 1px solid #cccccc;
+  color: #000;
+  font-size: 14px;
+  height: 34px;
+  line-height: 1.42857143;
+  padding: 6px 12px;
+}
+.dataTables_wrapper .dataTables_length select:focus {
+  border-color: #4680ff;
+  outline: none;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: #4680ff !important;
+  border-radius: 50% !important;
+  border: 0 !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:hover {
+  -webkit-box-shadow: none;
+  background: #4680ff;
+  border-color: #4680ff;
+  box-shadow: none;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:focus {
+  -webkit-box-shadow: none;
+  background: #4680ff;
+  border-color: #4680ff;
+  box-shadow: none;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:active {
+  -webkit-box-shadow: none;
+  background: #4680ff;
+  border-color: #4680ff;
+  box-shadow: none;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button:visited {
+  -webkit-box-shadow: none;
+  background: #4680ff;
+  border-color: #4680ff;
+  box-shadow: none;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current {
+  background: #4680ff;
+  border-color: #4680ff;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
+  background: #4680ff;
+  border-color: #4680ff;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:focus {
+  background: #4680ff;
+  border-color: #4680ff;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:active {
+  background: #4680ff;
+  border-color: #4680ff;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.current:visited {
+  background: #4680ff;
+  border-color: #4680ff;
+  color: #FFF !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.previous {
+  border-radius: 20px !important;
+  border: 1px solid #ccd0d4;
+  width: 100px !important;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.next {
+  border-radius: 20px !important;
+  border: 1px solid #ccd0d4;
+  width: 100px !important;
+}
+.dataTables_wrapper .dt-buttons {
+  margin-left: 15px;
+}
+.dataTables_wrapper .dt-buttons .dt-button.button-notification {
+  border-color: #ccd0d4;
+  border-radius: 3px;
+  color: #3D4246;
+  text-transform: uppercase;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:focus,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:visited {
+  background: #E0E2E5;
+  border: 1px solid #ccd0d4;
+  color: #FFF !important;
+  cursor: not-allowed;
+}
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover,
+.dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
+  color: #FFF !important;
 }

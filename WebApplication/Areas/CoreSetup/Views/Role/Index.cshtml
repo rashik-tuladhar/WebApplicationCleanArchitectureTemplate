@@ -1,0 +1,96 @@
+﻿@using Domain.Settings
+@model Domain.Settings.ViewModelRoleDetailsLists
+
+@{
+    ViewData["Title"] = "Role Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Breadcrumb
+{
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Role Management</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Role Lists</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+}
+
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>
+                Role List
+            </h5>
+            <span class="d-block float-right">
+                @{
+                    if (Context.User.Claims.FirstOrDefault(x => x.Type == "permission" && x.Value == PermissionValueLists.AddRole) != null)
+                    {
+                        <a asp-area="CoreSetup" asp-controller="Role" asp-action="AddRole" class="badge badge-success m-r-10" title="Add New Role"><i class="fas fa-plus-circle"></i> Add Role</a>
+                    }
+                }
+                <a href="javascript:void(0);" class="badge badge-warning" onclick="javascript:history.go(-1);" data-toggle="tab" title="Go Back"><i class="mdi mdi-chevron-double-left"></i> Back</a>
+            </span>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="nowrap table-columned" id="roleDetails">
+                    <thead>
+                        <tr>
+                            <th>Role</th>
+                            <th style="width: 100px;">Action</th>
+                        </tr>
+                    </thead>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+@section scripts{
+    <script type="text/javascript">
+        $('#roleDetails').DataTable({
+            "responsive": true,
+            "processing": true,
+            "serverSide": true,
+            "ajax": {
+                "type": 'POST',
+                "dataType": 'json',
+                "url": "/CoreSetup/Role/GetGridDetails",
+                'data': function (json) {
+                    return json;
+                }
+            },
+
+            "lengthMenu":
+                [
+                    [25, 50, 100],
+                    [25, 50, 100]
+                ],
+            "columns": [
+                { 'data': 'Name', "orderable": false },
+                { 'data': 'Action', "orderable": false }
+            ],
+            "columnDefs":
+                [
+                    //{ "className": "dt-center", "targets": "0" },
+                    //{ "className": "dt-center", "targets": "1" }
+                ]
+        });
+    </script>
+}
