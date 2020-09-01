@@ -60,7 +60,7 @@ namespace Infrastructure.CoreSetup.Services.RoleManagement
                 StringBuilder actionDetails = new StringBuilder();
                 if (_roleExtension.HasPermission(PermissionValueLists.EditRole))
                 {
-                    actionDetails.Append("<a href='" + _configuration["ApplicationData:RootUrl"] + "/CoreSetup/Role/EditRoles/" + roleId + "' class='btn btn-sm btn-link btn-round' title='Edit Role'><i class=\"fas fa-user-edit\"></i></a>");
+                    actionDetails.Append("<a href='" + _configuration["ApplicationData:RootUrl"] + "/CoreSetup/Role/EditRole/" + roleId + "' class='btn btn-sm btn-link btn-round' title='Edit Role'><i class=\"fas fa-user-edit\"></i></a>");
                 }
                 detail.Action = actionDetails.ToString();
                 roleLists.Add(detail);

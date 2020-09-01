@@ -240,3 +240,8 @@ table.dataTable.dtr-inline.collapsed > tbody > tr[role="row"] > th:first-child b
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active {
   color: #FFF !important;
 }
+.form-control:disabled,
+.form-control[readonly] {
+  background-color: #ffffff;
+  opacity: 1;
+}

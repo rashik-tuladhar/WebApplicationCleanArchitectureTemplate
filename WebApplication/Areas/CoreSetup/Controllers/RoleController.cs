@@ -38,7 +38,7 @@ namespace WebApplication.Areas.CoreSetup.Controllers
         }
 
         /// <summary>
-        ///     Role List Api For Getting Grid Details
+        /// Role List Api For Getting Grid Details
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -87,7 +87,7 @@ namespace WebApplication.Areas.CoreSetup.Controllers
         }
 
         /// <summary>
-        ///     Add New Role Group
+        /// Add New Role Group
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -151,11 +151,12 @@ namespace WebApplication.Areas.CoreSetup.Controllers
         }
 
         /// <summary>
-        ///     Get Role Details For Update
+        /// Get Role Details For Update
         /// </summary>
-        /// <param name="Id"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        //[Permission(PermissionManager.EditRole)]
+        [HttpGet]
+        [Permission(PermissionManager.EditRole)]
         public IActionResult EditRole(string id)
         {
             var roleDetails = _roleManagementBusiness.GetRoleDetailsUpdate(id);
@@ -163,7 +164,7 @@ namespace WebApplication.Areas.CoreSetup.Controllers
         }
 
         /// <summary>
-        ///     Update Role Add New And Delete if Unticked
+        ///     Update Role Add New And Delete if Un ticked
         /// </summary>
         /// <param name="roleUpdateViewDetails"></param>
         /// <returns></returns>

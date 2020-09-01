@@ -38,11 +38,11 @@
         <div class="card-body">
             <form asp-area="CoreSetup" asp-controller="Role" asp-action="AddRole" method="post" id="createRole">
 
-                    <div class="form-group">
-                        <label asp-for="RoleName">Role Name <span class="text-danger">*</span></label>
-                        <input asp-for="RoleName" class="form-control" />
-                        <span asp-validation-for="RoleName" class="text-danger"></span>
-                    </div>
+                <div class="form-group">
+                    <label asp-for="RoleName">Role Name <span class="text-danger">*</span></label>
+                    <input asp-for="RoleName" class="form-control" />
+                    <span asp-validation-for="RoleName" class="text-danger"></span>
+                </div>
 
                 @foreach (var roles in Model.RoleLists.Where(y => y.GroupName != "Dashboard").GroupBy(x => x.GroupName).Select(y => y.First()).Distinct())
                 {
@@ -52,11 +52,9 @@
                             @foreach (var role in Model.RoleLists.Where(y => y.GroupName == roles.GroupName).OrderBy(x => x.SubGroupName))
                             {
                                 <fieldset>
-                                    @*<div class="checkbox">*@
-                                        <legend><input type="checkbox" class="custom-checkbox checkAll"> @role.SubGroupName</legend>
-                                    @*</div>*@
+                                    <legend><input type="checkbox" class="custom-checkbox checkAll"> @role.SubGroupName</legend>
                                     <div class="row">
-                                        <div class="col-md-11 col-md-offset-1">
+                                        <div class="col-md-11 offset-md-1">
                                             <div class="row listing">
                                                 @foreach (var roleLists in role.RoleDetails.OrderBy(x => x.MenuName))
                                                 {
