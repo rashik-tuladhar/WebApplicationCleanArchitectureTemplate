@@ -20,11 +20,13 @@
     <meta name="author" content="" />
     <!-- Favicon icon -->
     <link rel="icon" href="~/assets/images/favicon.ico" type="image/x-icon">
-    <!-- vendor css -->
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link href="~/plugins/toastr/toastr.min.css" rel="stylesheet" />
+    <link href="~/plugins/mdi-icons/css/materialdesignicons.min.css" rel="stylesheet" />
+    <link href="~/css/admin-theme-global-styles.css" rel="stylesheet" />
+    <link href="~/css/admin-theme-custom-styles.css" rel="stylesheet" />
 </head>
-<body>
+<body class="login-body">
     <!-- [ auth-signin ] start -->
     <div class="auth-wrapper">
         <div class="auth-content">
@@ -33,7 +35,7 @@
                     <div class="col-md-12">
                         <div class="card-body">
                             <img src="assets/images/logo-dark.png" alt="" class="img-fluid mb-4">
-                            <h4 class="mb-3 f-w-400">Signin</h4>
+                            <h4 class="mb-3 f-w-400">Administrator Login</h4>
                             <form asp-controller="Login" asp-action="Login" id="loginForm">
                                 <div class="form-group mb-3">
                                     <label class="floating-label" for="Email">Username</label>
