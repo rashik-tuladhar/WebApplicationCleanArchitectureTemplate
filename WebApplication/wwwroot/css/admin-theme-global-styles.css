@@ -11,11 +11,7 @@ select.error:focus,
 textarea.error,
 textarea.error:focus {
   border-color: #000;
-  border-bottom: 1px solid #000;
-}
-.error {
-  font-size: 11px;
-  color: red;
+  border-bottom: 1px solid red;
 }
 .strength-title {
   font-size: 12px;
