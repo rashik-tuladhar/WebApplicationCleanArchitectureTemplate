@@ -1,3 +1,12 @@
+body {
+  background: #4680ff !important;
+}
+.pcoded-header {
+  background: #06213F !important;
+}
+.pro-head {
+  background: #06213F !important;
+}
 .login-body {
   background-image: url("../images/login-bg.jpg") !important;
   background-repeat: no-repeat;
@@ -27,12 +36,8 @@
 label {
   margin-bottom: 0;
 }
-body {
-  background: #4680ff !important;
-}
-.pcoded-header {
-  background: #06213F !important;
-}
-.pro-head {
-  background: #06213F !important;
+legend {
+  font-size: 14px;
+  font-weight: bold;
+  border-bottom: 1px solid #CCC;
 }

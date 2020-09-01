@@ -1,5 +1,122 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
+﻿@using Domain.Settings
+@model Domain.Settings.ViewModelRoleDetailsLists
+
 @{
+    ViewData["Title"] = "Role Management";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Breadcrumb
+{
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">Role Management</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">Add Role</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>
+                Add Role
+            </h5>
+            <span class="d-block float-right">
+                <a href="javascript:void(0);" class="badge badge-warning" onclick="javascript:history.go(-1);" data-toggle="tab" title="Go Back"><i class="mdi mdi-chevron-double-left"></i> Back</a>
+            </span>
+        </div>
+        <div class="card-body">
+            <form asp-area="CoreSetup" asp-controller="Role" asp-action="AddRole" method="post" id="createRole">
+
+                    <div class="form-group">
+                        <label asp-for="RoleName">Role Name <span class="text-danger">*</span></label>
+                        <input asp-for="RoleName" class="form-control" />
+                        <span asp-validation-for="RoleName" class="text-danger"></span>
+                    </div>
+
+                @foreach (var roles in Model.RoleLists.Where(y => y.GroupName != "Dashboard").GroupBy(x => x.GroupName).Select(y => y.First()).Distinct())
+                {
+                    <div class="form-group">
+                        <fieldset>
+                            <strong class="m-b-15 d-block">@roles.GroupName</strong>
+                            @foreach (var role in Model.RoleLists.Where(y => y.GroupName == roles.GroupName).OrderBy(x => x.SubGroupName))
+                            {
+                                <fieldset>
+                                    @*<div class="checkbox">*@
+                                        <legend><input type="checkbox" class="custom-checkbox checkAll"> @role.SubGroupName</legend>
+                                    @*</div>*@
+                                    <div class="row">
+                                        <div class="col-md-11 col-md-offset-1">
+                                            <div class="row listing">
+                                                @foreach (var roleLists in role.RoleDetails.OrderBy(x => x.MenuName))
+                                                {
+                                                    <div class="col-md-3 col-sm-4 listing-checkbox">
+                                                        <div class="form-group">
+                                                            <div class="checkbox toggle-group">
+                                                                <label>
+                                                                    <div class="ui toggle checkbox">
+                                                                        <input type="checkbox" class="toggle-checkbox checkRole" name="eachRoleValue" value="@roleLists.Slug"> @roleLists.MenuName
+                                                                    </div>
+                                                                </label>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+                                </fieldset>
+                            }
+                        </fieldset>
+                    </div>
+                }
+                <div class="row">
+                    <div class="col-md-12">
+                        <hr />
+                        <button type="submit" class="btn btn-primary">Add Role</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script type="text/javascript">
+        $("#createRole").validate({
+            rules: {
+                RoleName: "required"
+            },
+            messages: {
+                RoleName: "Please Enter the Role Name"
+            }
+        });
+
+        $(".checkAll").change(function () {
+            $(this).closest('fieldset').find(':checkbox').prop('checked', $(this).prop("checked"));
+
+        });
+        $('.checkRole').change(function () {
+            if (this.checked === false) {
+                $(this).closest('fieldset').find(':checkbox.checkAll').prop('checked', false);
+            }
+            if ($(this).closest('fieldset').find('.checkRole:checked').length === $(this).closest('fieldset').find('.checkRole').length) {
+                $(this).closest('fieldset').find(':checkbox.checkAll').prop('checked', true);
+            }
+        });
+        $('fieldset').each(function () {
+            if ($(this).find('.checkRole:checked').length === $(this).find('.checkRole').length) {
+                $(this).find(':checkbox.checkAll').prop('checked', true);
+            }
+        });
+    </script>
 }
