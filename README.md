@@ -13,12 +13,12 @@
 Since the application uses both the ef core and dapper as orm, i have used the ef core just to handle the identity part of the application, all the other functionality has been handled using dapper. Used the practice since one can use any orm on the basis of personal preference.
 
 To use the application please follow the steps below
-- 1. First edit the appsettings.json file with the connection string of your database
-- 2. Open of the package manager console and select the project to Infrastructure\Infrastructure.Authentication
-- 3. Use the command update-databse
-- 4. Please add a new user on authusers table with username SUPERUSER and some default password.
-- 5. Run 2 Stored Procedures that is under the folder : DatabaseScripts on the database
-- 6. Now we are good to go
+- First edit the appsettings.json file with the connection string of your database
+- Open of the package manager console and select the project to Infrastructure\Infrastructure.Authentication
+- Use the command update-databse
+- Please add a new user on authusers table with username SUPERUSER and some default password.
+- Run 2 Stored Procedures that is under the folder : DatabaseScripts on the database
+- Now we are good to go
 
 ## Settings
 - Under appsettings.json file you can customize serilog configuration as per your need
