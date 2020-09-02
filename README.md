@@ -1,8 +1,5 @@
 ### Web Application Template On Clean Architecture 👋
 
-[![Website](https://blog.rashik.com.np)
-
-
 ## Features
 
 - 🔭 Built On .Net Core 3.1
