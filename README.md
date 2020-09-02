@@ -1,12 +1,14 @@
-### Web Application Template On Clean Architecture 👋
+## Web Application Template On Clean Architecture 👋
 
 ## Features
 
-- 🔭 Built On .Net Core 3.1
-- 🌱 Authentication Handled Using Asp.Net Core Identity
-- 👯 Onion Architecure, Clean Architecture
+- 🔭 Built On .Net Core 3.1 - Complete User Management Module ( User Management And Dynamic Role Management)
+- 🌱 Authentication Handled Using Asp.Net Core Identity , Identity Seeding
+- 👯 Onion Architecure, Clean Architecture, Repository Pattern
 - 🥅 Free Version of Ablepro Theme Used
 - 📫 Automapper, Serilog With Seq, Entity Framework + Dapper 
+
+
 
 
 ### Connect with me:
