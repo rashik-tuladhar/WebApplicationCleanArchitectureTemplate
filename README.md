@@ -1,6 +1,6 @@
 ### Web Application Template On Clean Architecture 👋
 
-[![Website](https://img.shields.io/website?label=codeSTACKr.com&style=for-the-badge&url=https%3A%2F%2Fcodestackr.com)](https://blog.rashik.com.np)
+[![Website](https://blog.rashik.com.np)
 
 
 ## Features
