@@ -4,10 +4,10 @@ I made this template on my learning phase of the clear architecture, onion archi
 
 ## Features
 
-- 🔭 Built On .Net Core 3.1 - Complete User Management Module ( User Management And Dynamic Role Management)
+- 🏗 Built On .Net Core 3.1 - Complete User Management Module ( User Management And Dynamic Role Management)
 - 🌱 Authentication Handled Using Asp.Net Core Identity , Identity Seeding
 - 👯 Onion Architecure, Clean Architecture, Repository Pattern
-- 🥅 Bootstrap 4, Free Version of Ablepro Theme Used, Sweet Alert, Toastr, Datatable
+- 🏝 Bootstrap 4, Free Version of Ablepro Theme Used, Sweet Alert, Toastr, Datatable
 - 📫 Automapper, Serilog With Seq, Entity Framework + Dapper 
 
 ## How To
