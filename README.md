@@ -21,7 +21,7 @@ To use the application please follow the steps below
 - Run 2 Stored Procedures that is under the folder : DatabaseScripts on the database
 - Now we are good to go
 
-- For easiness i have also added the whole database backup so that it can be restored and used without any difficulties
+#### For easiness i have also added the whole database backup so that it can be restored and used without any difficulties
 
 ## Settings
 - Under appsettings.json file you can customize serilog configuration as per your need
