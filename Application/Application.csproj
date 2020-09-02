@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="DTOs\NewFolder\**" />
+    <EmbeddedResource Remove="DTOs\NewFolder\**" />
+    <None Remove="DTOs\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Folder Include="Helpers\" />
     <Folder Include="Interfaces\Services\" />
   </ItemGroup>

@@ -10,7 +10,7 @@ namespace Infrastructure.Authentication.Models.Identity
     public static class PermissionManager
     {
 
-        /**********************Need to add value in Utility Helper-> RoleExtension -> Permission Value Lists Compulsorily******************************/
+        /**********************Need to add value in Shared -> Settings -> Permission Value Lists Compulsorily******************************/
 
 
         /*

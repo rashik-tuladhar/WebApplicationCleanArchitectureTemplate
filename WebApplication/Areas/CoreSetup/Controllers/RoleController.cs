@@ -4,6 +4,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using Application.Interfaces.CoreSetup.RoleManagement;
+using AutoMapper;
 using Domain.Settings;
 using Infrastructure.Authentication.Models.Identity;
 using Microsoft.AspNetCore.Authorization;
@@ -24,11 +25,13 @@ namespace WebApplication.Areas.CoreSetup.Controllers
         private readonly ILogger _log = Log.ForContext<RoleController>();
         private readonly IRoleManagementBusiness _roleManagementBusiness;
         private readonly IServiceProvider _serviceProvider;
+        private readonly IMapper _mapper;
 
-        public RoleController(IRoleManagementBusiness roleManagementBusiness, IServiceProvider serviceProvider)
+        public RoleController(IRoleManagementBusiness roleManagementBusiness, IServiceProvider serviceProvider, IMapper mapper)
         {
             _roleManagementBusiness = roleManagementBusiness;
             _serviceProvider = serviceProvider;
+            _mapper = mapper;
         }
 
         [Permission(PermissionManager.ViewRoleList)]
@@ -45,29 +48,14 @@ namespace WebApplication.Areas.CoreSetup.Controllers
         public string GetGridDetails(GridDetails param)
         {
             _log.Information("Get Role Lists For Grid");
-            var roleDetails = new GridParam
-            {
-                DisplayLength = param.length,
-                DisplayStart = param.start,
-                SortDir = param.order[0].dir,
-                SortCol = param.order[0].column,
-                Flag = "GetRoleLists",
-                Search = param.search.value,
-                UserName = User.Identity.Name
-            };
-            _log.Information("Role Lists With Parameters {0}", JsonConvert.SerializeObject(roleDetails));
-            var roleList = _roleManagementBusiness.GetRoleLists(roleDetails);
-            _log.Information("Role Lists Response with details {0}", JsonConvert.SerializeObject(roleList));
-            var roleLists = new HtmlGrid<RoleLists>();
-            roleLists.aaData = roleList;
-            var firstDefault = roleList.FirstOrDefault();
-            if (firstDefault != null)
-            {
-                roleLists.iTotalDisplayRecords = Convert.ToInt32(firstDefault.FilterCount);
-                roleLists.iTotalRecords = Convert.ToInt32(firstDefault.FilterCount);
-            }
+            var gridParam = _mapper.Map<GridParam>(param);
+            gridParam.Flag = "RoleLists";
+            gridParam.UserName = User.Identity.Name;
 
-            var result = JsonConvert.SerializeObject(roleLists);
+            _log.Information("Role Lists With Parameters {0}", JsonConvert.SerializeObject(gridParam));
+            var roleList = _roleManagementBusiness.GetRoleLists(gridParam);
+            _log.Information("Role Lists Response with details {0}", JsonConvert.SerializeObject(roleList));
+            var result = JsonConvert.SerializeObject(roleList);
             return result;
         }
 

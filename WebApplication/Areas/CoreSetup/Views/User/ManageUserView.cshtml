@@ -1,0 +1,142 @@
+﻿@using Infrastructure.Shared.Settings
+@model Application.DTOs.Authentication.UserDTOs.UserViewModel
+@{
+    ViewData["Title"] = "Create User";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section Breadcrumb
+{
+    <!-- [ breadcrumb ] start -->
+    <div class="page-header">
+        <div class="page-block">
+            <div class="row align-items-center">
+                <div class="col-md-12">
+                    <div class="page-header-title">
+                        <h5 class="m-b-10">User Management</h5>
+                    </div>
+                    <ul class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="javascript:void(0);"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="javascript:void(0);">User Lists</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- [ breadcrumb ] end -->
+}
+
+<div class="col-sm-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>
+                User List
+            </h5>
+            <span class="d-block float-right">
+                @{
+                    if (Context.User.Claims.FirstOrDefault(x => x.Type == "permission" && x.Value == PermissionValueLists.AddUser) != null)
+                    {
+                        <a asp-area="CoreSetup" asp-controller="User" asp-action="ManageUserView" class="badge badge-success m-r-10" title="Add New User"><i class="fas fa-plus-circle"></i> Add User</a>
+                    }
+                }
+                <a href="javascript:void(0);" class="badge badge-warning" onclick="javascript:history.go(-1);" data-toggle="tab" title="Go Back"><i class="mdi mdi-chevron-double-left"></i> Back</a>
+            </span>
+        </div>
+        <div class="card-body">
+            <form asp-area="CoreSetup" asp-controller="User" asp-action="@(string.IsNullOrEmpty(Model.Id)?"AddUser":"UpdateUser")" method="post" id="createUser">
+                <fieldset>
+                    <legend>Personal Details</legend>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="FirstName">First Name <span class="text-danger">*</span></label>
+                                <input type="text" asp-for="FirstName" class="form-control" placeholder="Enter First Name">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="MiddleName">Middle Name </label>
+                                <input type="text" asp-for="MiddleName" class="form-control" placeholder="Enter Middle Name">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="LastName">Last Name <span class="text-danger">*</span></label>
+                                <input type="text" asp-for="LastName" class="form-control" placeholder="Enter Last Name">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Gender">Gender <span class="text-danger">*</span></label>
+                                <select asp-for="Gender" asp-items="@Model.GenderList" class="form-control">
+                                    <option value="">Select Gender</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="PhoneNumber">Phone Number <span class="text-danger">*</span></label>
+                                <input type="text" asp-for="PhoneNumber" class="form-control" placeholder="Enter Phone Number">
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+
+
+                <fieldset id="fieldSetLogin">
+                    <legend>Login Credentials</legend>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="UserName">Username <span class="text-danger">*</span></label>
+                                @if (string.IsNullOrEmpty(Model.Id))
+                                {
+                                    <input type="text" asp-for="UserName" class="form-control" placeholder="Enter Username">
+                                    <span class="text-danger text-xs" id="userNameError"></span>
+                                    <span id="UserName_jserror"></span>
+                                }
+                                else
+                                {
+                                    <input type="text" asp-for="UserName" id="UserName" class="form-control" placeholder="Enter UserName Code" disabled="disabled">
+                                    <span id="UserName_jserror"></span>
+                                }
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label asp-for="Role">User Role <span class="text-danger">*</span></label>
+                                <select asp-for="Role" asp-items="@Model.RoleList" class="form-control">
+                                    <option value="">Select Role</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </fieldset>
+                <hr />
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="form-group">
+                            <button type="submit" id="btnAddUser" class="btn btn-primary">
+                                @(string.IsNullOrEmpty(Model.Id) ? "Add User" : "Update User")
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <input type="hidden" asp-for="Id" id="hdnRowId" value="@Model.Id" />
+            </form>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/coresetup/user-management.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var user = UserManagement.user();
+            user.renderManage();
+        });
+    </script>
+}

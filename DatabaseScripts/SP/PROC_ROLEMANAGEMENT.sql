@@ -4,9 +4,9 @@
 -- Description: Role Management Overall Process (Add ,Edit,Assign, List Roles )
 
 -- Change History:
--- 2020-09-01 Rashik: Initialized
+-- 2020-09-02 Rashik: Flag renamed for role list
 -- =============================================
-CREATE PROCEDURE PROC_ROLEMANAGEMENT
+ALTER PROCEDURE PROC_ROLEMANAGEMENT
 (
 	@Flag				VARCHAR(20),
 	@RoleId				VARCHAR(50)				= NULL,
@@ -39,7 +39,7 @@ BEGIN TRY
 		SET @FirstRec = @DisplayStart;
 		SET @LastRec = @DisplayStart + @DisplayLength;
 
-	IF @Flag = 'GetRoleLists'
+	IF @Flag = 'RoleLists'
 	BEGIN
 		Select ROW_NUMBER() over (ORDER BY Id DESC) AS RowNum,COUNT(*) OVER() AS FilterCount,* 
 		INTO #tempRoles

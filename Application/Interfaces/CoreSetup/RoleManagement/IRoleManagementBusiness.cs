@@ -6,7 +6,7 @@ namespace Application.Interfaces.CoreSetup.RoleManagement
     public interface IRoleManagementBusiness
     {
         List<RoleDetailsLists> GetAvailableRoleLists();
-        List<RoleLists> GetRoleLists(GridParam roleDetails);
+        HtmlGrid<RoleLists> GetRoleLists(GridParam roleDetails);
         RoleUpdateViewDetails GetRoleDetailsUpdate(string roleId);
     }
 }

@@ -1,6 +1,10 @@
 ﻿using System;
+using Application.Interfaces.CoreSetup.RoleManagement;
+using Application.Interfaces.CoreSetup.UserManagement;
 using Infrastructure.Authentication.Contexts;
 using Infrastructure.Authentication.Models.Identity;
+using Infrastructure.Authentication.Services.RoleManagement;
+using Infrastructure.Authentication.Services.UserManagement;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -29,7 +33,13 @@ namespace Infrastructure.Authentication
 
             //additional claims besides the default lists
             services.AddScoped<IUserClaimsPrincipalFactory<ApplicationUser>, AdditionalClaims>();
-            //Email Config Get Values From AppSetting And Bind Data In Class
+
+            services.AddTransient<IRoleExtension, RoleExtension>();
+            services.AddTransient<IRoleManagementBusiness, RoleManagementBusiness>();
+            services.AddTransient<IRoleManagementRepository, RoleManagementRepository>();
+            services.AddTransient<IUserManagementBusiness, UserManagementBusiness>();
+            services.AddTransient<IUserManagementRepository, UserManagementRepository>();
+
             services.ConfigureApplicationCookie(options =>
             {
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(Convert.ToDouble(configuration["ApplicationData:ApplicationTimeOut"]));
