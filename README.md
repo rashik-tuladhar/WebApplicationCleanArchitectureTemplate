@@ -1,5 +1,5 @@
 ## Web Application Template On Clean Architecture 👋
-- I currently made this template on my learning phase, due to which i might have some implementations wrongly made, i wish to receive lots of suggestion so as to make the template better further. You can reach me via my email address tuladhar.rashik@gmail.com
+I currently made this template on my learning phase, due to which i might have some implementations wrongly made, i wish to receive lots of suggestion so as to make the template better further. You can reach me via my email address tuladhar.rashik@gmail.com
 
 ## Features
 
