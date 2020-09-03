@@ -2,7 +2,7 @@
 The application comprises of complete user and role management dynamically handling the navigatino menus and roles together with user.
 I made this template on my learning phase of the clear architecture, onion architecture , due to which i might have some implementations or assumptions wrongly made, i wish to receive lots of suggestion so as to make the template better further. You can reach me via my email address tuladhar.rashik@gmail.com
 
-## Features
+## Features 
 
 - 🏗 Built On .Net Core 3.1 - Complete User Management Module ( User Management And Dynamic Role Management)
 - 🌱 Authentication Handled Using Asp.Net Core Identity , Identity Seeding
